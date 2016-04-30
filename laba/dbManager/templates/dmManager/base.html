@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+{% load staticfiles %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" type="text/css" href="{% static 'Bootstrap/css/bootstrap.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'Bootstrap/css/mystyle.css' %}">
+    <title>DATABASE</title>
+</head>
+<body background="static/images/background.jpg">
+<ul>
+  <li><a href="{% url 'dbManager:show_songs' %}">Songs</a></li>
+  <li><a href="{% url 'dbManager:show_singers' %}">Singers</a></li>
+  <li><a href="{% url 'dbManager:show_history' %}">History</a></li>
+</ul>
+{% block content %}
+{% endblock %}
+</body>
+</html>

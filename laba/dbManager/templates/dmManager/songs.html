@@ -1,0 +1,118 @@
+{% extends 'dmManager/base.html' %}
+{% block content %}
+<div class="container">
+        <div class="col-md-12">
+            <div class="col-md-12">
+                <div class="col-md-6">
+                    <h1>Songs</h1>
+                </div>
+                <div class="col-md-6">
+                    <form action="load_again" method="post">{% csrf_token %}
+                        <div class="col-md-12">
+                            <button  style="margin-left: 400px; margin-top: 10px" type="submit" class="btn btn-success">Reload</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+            <div class="col-md-12">
+                <div class="col-md-1"><h3><b>#</b></h3></div>
+                <div class="col-md-2"><h3><b>Name</b></h3></div>
+                <div class="col-md-2"><h3><b>Style</b></h3></div>
+                <div class="col-md-7"><h3><b>Singer</b></h3></div>
+            </div>
+            <div class="col-md-12">
+            <form action="show_songs" method="post">
+                <div>
+                    {% for song in response.songs %}
+                            <div class="myrow">
+                                        <div class="col-md-1">
+                                            <p>{{song.0}}</p>
+                                        </div>
+                                        <div class="col-md-2">
+                                            <p>{{song.1}}</p>
+                                        </div>
+                                        <div class="col-md-2">
+                                            <p>{{song.2}}</p>
+                                        </div>
+                                        <div class="col-md-7">
+                                            <p>{{song.6}}</p>
+                                        </div>
+                            </div>
+                    {%endfor%}
+                </div>
+            </form>
+            </div>
+            <div class="col-md-12 myrow1">
+                <div class="col-md-6 myrow1">
+                    <h2>Add Song</h2>
+                </div>
+                <div class="col-md-6 myrow1">
+                    <h2>Find Song</h2>
+                </div>
+            </div>
+            <div class="col-md-12 adding_song myrow1">
+                <div class="col-md-6 myrow1">
+                <form action="insert" method="post">{% csrf_token %}
+                    <div class="myrow1">
+                        <div class="col-md-4">
+                            <label for="name">Name: </label>
+                        </div>
+                        <div class="col-md-8">
+                            <input id="name" name="name" type="text" placeholder="Song name">
+                        </div>
+                    </div>
+                    <div class="myrow1">
+                        <div class="col-md-4">
+                            <label for="style">Style: </label>
+                        </div>
+                        <div class="col-md-8">
+                            <input id="style" name="style" type="text" placeholder="Song style">
+                        </div>
+                    </div>
+                    <div class="myrow1">
+                        <div class="col-md-4">
+                            <label for="singer_name">Singer_name: </label>
+                        </div>
+                        <div class="col-md-8">
+                            <input id="singer_name" name="singer_name" type="text" placeholder="Singer name">
+                        </div>        <div class="col-md-12">
+
+        </div>
+                    </div>
+                    <div class="myrow1">
+                        <div class="col-md-4">
+                            <label for="len">Length: </label>
+                        </div>
+                        <div class="col-md-8">
+                            <input id="len" name="len" type="text" placeholder="Length">
+                        </div>
+                    </div>
+                    <div class="myrow1">
+                        <div class="col-md-6">
+                            <button type="submit"class="btn btn-success">Add</button>
+                        </div>
+                    </div>
+                </form>
+                </div>
+                <div class="col-md-6 adding_song myrow1">
+                   <form action="find" method="post">{% csrf_token %}
+                       <div class="myrow1">
+                        <div class="col-md-4">
+                            <label for="text">Text: </label>
+                        </div>
+                        <div class="col-md-8">
+                            <input id="text" name="text" type="text" placeholder="Song text">
+                        </div>
+                    </div>
+                       <div class="myrow1">
+                        <div class="col-md-12">
+                            <button type="submit"class="btn btn-success">Find</button>
+                        </div>
+                    </div>
+                   </form>
+                </div>
+            </div>
+        </div>
+</form>
+</div>
+{% endblock content %}
