@@ -1,0 +1,131 @@
+{% extends 'dmManager/base.html' %}
+{% block content %}
+<div class="container">
+    <div class="col-md-12">
+        <h1 class="col-md-12">Orders</h1>
+        <div class="col-md-12 myrow1">
+            <div class="col-md-1"><h3><b>#</b></h3></div>
+            <div class="col-md-2"><h3><b>Customer</b></h3></div>
+            <div class="col-md-2"><h3><b>Song</b></h3></div>
+            <div class="col-md-7"><h3><b>Date</b></h3></div>
+        </div>
+        <div class="col-md-12">
+            <form action="show_history" method="post">
+                <div>
+                    {% for order in response.history %}
+                            <div class="myrow1">
+                                        <div class="col-md-1">
+                                            <p>{{order.0}}</p>
+                                        </div>
+                                        <div class="col-md-2">
+                                            <p>{{order.5}}</p>
+                                        </div>
+                                        <div class="col-md-2">
+                                            <p>{{order.7}}</p>
+                                        </div>
+                                        <div class="col-md-7">
+                                            <p>{{order.3}}</p>
+                                        </div>
+                            </div>
+                    {%endfor%}
+                </div>
+            </form>
+        </div>
+        <div class="col-md-12">
+            <br><br>
+        </div>
+        <div class="col-md-12">
+            <div>
+            <form action="deleteOrder" method="post">{% csrf_token %}
+                    <div class="col-md-12 myrow1">
+                        <div>
+                            <div>
+                            <div class="col-md-4">
+                                <button style="margin-bottom: 2px" type="submit"class="btn btn-success">Delete</button>
+                            </div>
+                            </div>
+                            <div class="col-md-4 text-right">
+                                <label style="margin-top: 2px; margin-left: 20px" for="DeleteOrder">Order: </label>
+                            </div>
+                            <div class="col-md-4">
+                                <select id="DeleteOrder" name="DeleteOrder" style="width: 200px;height: 30px; border-radius: 5px">
+                                    {% for order in response.history %}
+                                        <option value="{{order.0}}">{{order.0}}</option>
+                                    {%endfor%}
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+        <div class="col-md-12 myrow1">
+                <div class="col-md-6 myrow1">
+                    <h2>Add Order</h2>
+                </div>
+                <div class="col-md-6 myrow1">
+                    <h2>Edit Order</h2>
+                </div>
+            </div>
+        <div class="col-md-12 myrow1">
+            <div class="col-md-6 myrow1">
+                <form action="add_order" method="post">{% csrf_token %}
+                    <div class="myrow1">
+                        <div class="col-md-4">
+                            <label for="Cust_name">Name: </label>
+                        </div>
+                        <div class="col-md-8">
+                            <input id="Cust_name" name="Cust_name" type="text" placeholder="Customer name">
+                        </div>
+                    </div>
+                     <div class="myrow1">
+                        <div class="col-md-4">
+                            <label for="Song_name">Song: </label>
+                        </div>
+                        <div class="col-md-8">
+                            <input id="Song_name" name="Song_name" type="text" placeholder="Song name">
+                        </div>
+                    </div>
+                    <div class="myrow1">
+                        <div class="col-md-12">
+                                <button style="margin-bottom: 2px" type="submit"class="btn btn-success">Add</button>
+                            </div>
+                    </div>
+                </form>
+            </div>
+        <div class="col-md-6 myrow1">
+                <form action="edit_order" method="post">{% csrf_token %}
+                    <div class="myrow1">
+                        <div class="col-md-4">
+                            <label for="Cust_id_edit">Order: </label>
+                        </div>
+                        <select id="Cust_id_edit" name="Cust_id_edit" style="width: 180px; margin-left: 14px;height: 30px; border-radius: 5px">
+                                    {% for order in response.history %}
+                                        <option value="{{order.0}}">{{order.0}}</option>
+                                    {%endfor%}
+                                </select>
+                    </div>
+                     <div class="myrow1">
+                        <div class="col-md-4">
+                            <label for="Cust_song_edit">Song: </label>
+                        </div>
+                        <div class="col-md-8">
+                            <input id="Cust_song_edit" name="Cust_song_edit" type="text" placeholder="Song name">
+                        </div>
+                    </div>
+                    <div class="myrow1">
+                        <div class="col-md-12">
+                                <button style="margin-bottom: 2px" type="submit" class="btn btn-success">Edit</button>
+                            </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+        </div>
+     <form action="edit_order" method="post">
+    {% csrf_token %}
+    {{ names }}
+    <input type="submit" value="Submit" />
+    </div>
+</div>
+{% endblock %}

@@ -1,0 +1,92 @@
+{% extends 'dmManager/base.html' %}
+{% block content %}
+<div class="container">
+        <div class="col-md-12">
+            <h1>Singers</h1>
+            <div class="col-md-12">
+                <div class="col-md-1"><h3><b>#</b></h3></div>
+                <div class="col-md-2"><h3><b>Name</b></h3></div>
+                <div class="col-md-2"><h3><b>From</b></h3></div>
+                <div class="col-md-7"><h3><b>Albums count</b></h3></div>
+            </div>
+            <div>
+                <form action="show_singers" method="post">
+                <div>
+                    {% for singer in response.singers %}
+                    <div class="col-md-12">
+                         <div class="col-md-1">
+                                <p>{{singer.0}}</p>
+                         </div>
+                            <div class="col-md-2">
+                                <p>{{singer.1}}</p>
+                         </div>
+                          <div class="col-md-2">
+                               <p class="from_marg">{{singer.2}}</p>
+                         </div>
+                         <div class="col-md-7">
+                                <p class="album_count_marg">{{singer.3}}</p>
+                         </div>
+                        </div>
+                      {%endfor%}
+                    </div>
+                </form>
+            </div>
+        </div>
+    <div class="col-md-12 myrow1">
+        <div class="col-md-6 myrow1">
+            <h1>Delete singer</h1>
+        </div>
+        <div class="col-md-6">
+            <h1>Show in range</h1>
+        </div>
+    </div>
+    <div class="col-md-12 myrow1">
+        <div class="col-md-6 myrow1">
+             <form action="delete" method="post">{% csrf_token %}
+                    <div class="col-md-12">
+                        <div class="myrow1">
+                            <div class="col-md-4">
+                                <label for="idDelete">Id: </label>
+                            </div>
+                            <div class="col-md-8">
+                                <input id="idDelete" name="idDelete" type="text" placeholder="Id">
+                            </div>
+                        </div>
+                        <div class="myrow1">
+                            <div class="col-md-6">
+                                <button  type="submit"class="btn btn-success">Delete</button>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+        </div>
+        <div class="col-md-6 myrow1">
+             <form action="show_in_range" method="post">{% csrf_token %}
+                 <div class=col-md-12">
+                     <div class="myrow1">
+                         <div class="col-md-4">
+                                <label for="Min">Minimum: </label>
+                            </div>
+                            <div class="col-md-8">
+                                <input id="Min" name="Min" type="text" placeholder="Minimum">
+                            </div>
+                         </div>
+                     <div class="myrow1">
+                        <div class="col-md-4">
+                                <label for="Max">Maximum: </label>
+                            </div>
+                            <div class="col-md-8">
+                                <input id="Max" name="Max" type="text" placeholder="Maximum">
+                            </div>
+                     </div>
+                     <div class="myrow1">
+                          <div class="col-md-6">
+                            <button  type="submit"class="btn btn-success">Show</button>
+                        </div>
+                         </div>
+                    </div>
+                </form>
+        </div>
+    </div>
+</div>
+{% endblock content %}
